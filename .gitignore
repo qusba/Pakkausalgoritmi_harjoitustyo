@@ -1,0 +1,6 @@
+Huffman/__pycache__/
+/.pytest_cache
+/__pycache__
+/.coverage
+/htmlcov
+
