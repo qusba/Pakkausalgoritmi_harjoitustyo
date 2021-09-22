@@ -11,7 +11,8 @@ def huffman_pakkaa(huffmankoodaus_olio):
     Palauttaa:
         output_polku: [Uuden pakatun tiedoston tiedostopolku.]
     """
-    tiedostonimi, tiedostotyyppi = os.path.splitext(huffmankoodaus_olio.input_polku)
+    tiedostonimi, tiedostotyyppi = os.path.splitext(
+        huffmankoodaus_olio.input_polku)
     output_polku = tiedostonimi + ".bin"
 
     with open(huffmankoodaus_olio.input_polku, "r") as tiedosto, open(output_polku, "wb") as optiedosto:
@@ -23,15 +24,13 @@ def huffman_pakkaa(huffmankoodaus_olio):
         uudet_bittikoodit = huffmankoodaus_olio.tallenna_koodit(huffmannin_puu)
 
         koodattu_teksti = huffmankoodaus_olio.muuta_biteiksi(teksti)
-        taytetty_koodattu_teksti = huffmankoodaus_olio.tayta_tavut(koodattu_teksti)
+        taytetty_koodattu_teksti = huffmankoodaus_olio.tayta_tavut(
+            koodattu_teksti)
 
-        lopputulos = huffmankoodaus_olio.muuta_tavuiksi(taytetty_koodattu_teksti)
+        lopputulos = huffmankoodaus_olio.muuta_tavuiksi(
+            taytetty_koodattu_teksti)
         optiedosto.write(bytes(lopputulos))
 
         print("Pakkaus valmis")
         print(output_polku)
         return output_polku
-
-
-
-

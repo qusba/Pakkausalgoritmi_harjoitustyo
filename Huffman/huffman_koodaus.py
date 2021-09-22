@@ -1,9 +1,11 @@
 from huffman_solmu import HuffmanSolmu
 
+
 class HuffmanKoodaus:
     """Luokka, jossa kaikki funktiot, joita tarvitaan tiedoston pakkaamiseen Huffman-menetelmällä.
 
     """
+
     def __init__(self, inputpolku):
         """ Luokan konstruktori.
 
@@ -35,7 +37,7 @@ class HuffmanKoodaus:
 
         Parametrit:
         data (dict): [sanakirja joka sisältää pakattavan tiedoston kaikki merkit ja niiden ilmaantuvuuden]
-        
+
         Palauttaa:
             Solmut[0]  [Valmiin Huffmannin puun juurisolmu]"""
 
@@ -75,7 +77,7 @@ class HuffmanKoodaus:
 
     def muuta_biteiksi(self, teksti):
         """Funktio luo merkkijonon, joka vastaa tekstiä bitteinä uusien bittiesitysten mukaan.
-        
+
 
         Parametrit:
             teksti: [Teksti jota tulkitaan.]
