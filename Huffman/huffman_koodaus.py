@@ -2,7 +2,7 @@ from huffman_solmu import HuffmanSolmu
 
 
 class HuffmanKoodaus:
-    """Luokka, jossa kaikki funktiot, joita tarvitaan tiedoston pakkaamiseen Huffman-menetelmällä.
+    """Luokka, jossa kaikki funktiot, joita tarvitaan tiedoston pakkaamiseen ja purkamiseen Huffman-menetelmällä.
 
     """
 
@@ -10,11 +10,13 @@ class HuffmanKoodaus:
         """ Luokan konstruktori.
 
         Parametrit:
-        input_polku: polku tiedostoon joka halutaan pakata ilmaistuna stringinä.
-        bittiesitykset: sanakirja, jota tarvitaan Huffmannin puun mukaisten merkkien uusien bittiesitysten tallentamiseen.
+        input_polku: Polku tiedostoon joka halutaan pakata ilmaistuna stringinä.
+        bittiesitykset: Sanakirja, jota tarvitaan Huffmannin puun mukaisten merkkien uusien bittiesitysten tallentamiseen.
+        kaanteiset_bittiesitykset: Sanakirja, jota tarvitaan kun puretaan Huffmanpakattua tiedostoa.
         """
         self.input_polku = inputpolku
         self.bittiesitykset = {}
+        self.kaanteiset_bittiesitykset = {}
 
     def luo_ilmaantuvuus_sanakirja(self, teksti):
         """ Funktio joka laskee tiedoston merkit ja niiden ilmaantuvuuden ja luo tiedoista sanakirjan.
@@ -71,11 +73,12 @@ class HuffmanKoodaus:
             return
         if solmu.merkki != None:
             self.bittiesitykset[solmu.merkki] = bittiesitys
+            self.kaanteiset_bittiesitykset[bittiesitys] = solmu.merkki
 
         self.tallenna_koodit(solmu.vasen_lapsi, bittiesitys + "0")
         self.tallenna_koodit(solmu.oikea_lapsi, bittiesitys + "1")
 
-    def muuta_biteiksi(self, teksti):
+    def muuta_teksti_biteiksi(self, teksti):
         """Funktio luo merkkijonon, joka vastaa tekstiä bitteinä uusien bittiesitysten mukaan.
 
 
@@ -108,7 +111,7 @@ class HuffmanKoodaus:
         koodattu_teksti = tayttoinfo + koodattu_teksti
         return koodattu_teksti
 
-    def muuta_tavuiksi(self, taytetty_koodattu_teksti):
+    def muuta_teksti_tavuiksi(self, taytetty_koodattu_teksti):
         """Funktio joka "tayta_tavut" funktion valmiiksi käsittelemän merkkijonon tavuiksi.
 
         Args:
@@ -122,3 +125,24 @@ class HuffmanKoodaus:
             tavu = taytetty_koodattu_teksti[i:i+8]
             tavut.append(int(tavu, 2))
         return tavut
+
+    def poista_taytto(self,bittimerkkijono):
+        tayttoinfo = bittimerkkijono[:8]
+        ylijaamabitit = int(tayttoinfo,2)
+        bittimerkkijono = bittimerkkijono[8:]
+        koodattu_teksti = bittimerkkijono[:-1*ylijaamabitit]
+
+        return koodattu_teksti
+    
+    def muuta_tavut_tekstiksi(self,bittimerkkijono):
+        purettu_teksti = ""
+        nykyinen_teksti = ""
+
+        for bitti in bittimerkkijono:
+            nykyinen_teksti += bitti
+            if nykyinen_teksti in self.kaanteiset_bittiesitykset:
+                merkki = self.kaanteiset_bittiesitykset[nykyinen_teksti]
+                purettu_teksti += merkki
+                nykyinen_teksti = ""
+        return purettu_teksti
+

@@ -23,14 +23,15 @@ def huffman_pakkaa(huffmankoodaus_olio):
         huffmannin_puu = huffmankoodaus_olio.luo_puu(ilmaantuvuus)
         uudet_bittikoodit = huffmankoodaus_olio.tallenna_koodit(huffmannin_puu)
 
-        koodattu_teksti = huffmankoodaus_olio.muuta_biteiksi(teksti)
+        koodattu_teksti = huffmankoodaus_olio.muuta_teksti_biteiksi(teksti)
         taytetty_koodattu_teksti = huffmankoodaus_olio.tayta_tavut(
             koodattu_teksti)
 
-        lopputulos = huffmankoodaus_olio.muuta_tavuiksi(
+        lopputulos = huffmankoodaus_olio.muuta_teksti_tavuiksi(
             taytetty_koodattu_teksti)
         optiedosto.write(bytes(lopputulos))
 
         print("Pakkaus valmis")
         print(output_polku)
         return output_polku
+    
