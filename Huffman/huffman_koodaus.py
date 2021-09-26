@@ -12,11 +12,10 @@ class HuffmanKoodaus:
         Parametrit:
         input_polku: Polku tiedostoon joka halutaan pakata ilmaistuna stringinä.
         bittiesitykset: Sanakirja, jota tarvitaan Huffmannin puun mukaisten merkkien uusien bittiesitysten tallentamiseen.
-        kaanteiset_bittiesitykset: Sanakirja, jota tarvitaan kun puretaan Huffmanpakattua tiedostoa.
+        puun_bittikoodi: Merkkijono, johon tallennetaan Huffmannin puu bitteinä.
         """
         self.input_polku = inputpolku
         self.bittiesitykset = {}
-        self.kaanteiset_bittiesitykset = {}
         self.puun_bittikoodi = ""
 
     def luo_ilmaantuvuus_sanakirja(self, teksti):
@@ -61,11 +60,20 @@ class HuffmanKoodaus:
             solmut.remove(oikea_solmu)
 
         return solmut[0]
-    
-    def muuta_puu_biteiksi(self,solmu):
-        
+
+    def muuta_puu_biteiksi(self, solmu):
+        """Funktio, joka muuttaa Huffmannin puun biteiksi, jotta se voidaan tallentaa pakatun tekstin kanssa.
+
+        Parametrit:
+            solmu: [Huffmannin puun juurisolmu.]
+
+        Palauttaa:
+            puun_bittikoodi: [Valmis merkkijono, jossa on koodattuna Huffmannin puun sisältö ja sen rakenne.]
+        """
+
         if solmu.vasen_lapsi is None and solmu.oikea_lapsi is None:
             self.puun_bittikoodi += "1" + "{0:08b}".format(ord(solmu.merkki))
+
         else:
             self.puun_bittikoodi += "0"
             self.muuta_puu_biteiksi(solmu.vasen_lapsi)
@@ -106,7 +114,8 @@ class HuffmanKoodaus:
 
     def tayta_tavut(self, koodattu_teksti):
         """Funktio varmistaa, että "muuta_biteiksi" funktiossa luotu merkkijono on oikean mittainen, jotta se voidaan muuttaa tavuiksi.
-        Funktio lisää tarvittavat ylimääräiset bitit merkkijonoon, sekä tiedon siitä, mitä on lisätty.
+        Funktio lisää tarvittavat ylimääräiset bitit merkkijonoon, sekä tiedon siitä, mitä on lisätty. Tässä vaiheessa myös biteiksi muutettu
+        Huffmannin puu lisätään koodattuun tekstiin.
 
         Parametrit:
             koodattu_teksti: ["muuta_biteiksi" funktion palauttama merkkijono.]
@@ -115,8 +124,9 @@ class HuffmanKoodaus:
             Koodattu_teksti: [Valmiiksi hiottu bittimerkkijono.]
         """
         puun_pituus = len(self.puun_bittikoodi)
-        puun_pituus_info = "{0:16b}".format(puun_pituus)
+        puun_pituus_info = "{0:08b}".format(puun_pituus)
         koodattu_teksti = self.puun_bittikoodi + koodattu_teksti
+        koodattu_teksti = puun_pituus_info + koodattu_teksti
         ylijaamabitit = 8 - (len(koodattu_teksti) % 8)
         for i in range(ylijaamabitit):
             koodattu_teksti += "0"
@@ -140,36 +150,34 @@ class HuffmanKoodaus:
             tavut.append(int(tavu, 2))
         return tavut
 
-    def poista_taytto(self,bittimerkkijono):
+    def poista_taytto(self, bittimerkkijono):
+        """Funktio, joka poistaa tayta_tavut() funktion lisäämät ylimääräiset bitit.
+
+        Parametrit:
+            bittimerkkijono: ["Bitti" muodossa oleva merkkijono, joka on pakattu huffman_pakkaa() funktiolla]
+
+        Palauttaa:
+            koodattu_teksti: [Merkkijono, josta on poistettu ylimääräiset bitit lopusta, sekä informaatio niiden määrästä alusta.]
+        """
         tayttoinfo = bittimerkkijono[:8]
-        ylijaamabitit = int(tayttoinfo,2)
+        ylijaamabitit = int(tayttoinfo, 2)
         bittimerkkijono = bittimerkkijono[8:]
         koodattu_teksti = bittimerkkijono[:-1*ylijaamabitit]
 
         return koodattu_teksti
-    
-    def irroita_puu(self,bittimerkkijono):
-        puun_info = bittimerkkijono[:16]
-        puun_pituus = int(puun_info,2)
+
+    def irroita_puu(self, bittimerkkijono):
+        """Funktio, joka erottaa toisistaan merkkijonosta käsittelyä varten Huffmannin puun ja itse tekstiosan.
+
+        Parametrit:
+            bittimerkkijono ([type]): [Poista_taytto() funktion palauttama merkkijono]
+
+        Palauttaa:
+            [puu, teksti]: [Lista, jossa on kaksi alkiota: Huffmannin puu indeksissä 0, sekä koodattu teksti indeksissä 1]
+        """
+        puun_info = bittimerkkijono[:8]
+        puun_pituus = int(puun_info, 2)
+        bittimerkkijono = bittimerkkijono[8:]
         puu = bittimerkkijono[:puun_pituus]
         teksti = bittimerkkijono[puun_pituus:]
-        print(puu)
-
-        return [puu,teksti]
-
-
-    
-   # def muuta_tavut_tekstiksi(self,eritelty_teksti):
-   #     purettu_teksti = ""
-   #     nykyinen_teksti = ""#
-
-   #     for bitti in eritelty_teksti[0]: #rakennetaan puu uudelleen
-    #        
-    #    for bitti in eritelty_teksti[1]:
-    #        nykyinen_teksti += bitti
-    #        if nykyinen_teksti in self.kaanteiset_bittiesitykset:
-    #            merkki = self.kaanteiset_bittiesitykset[nykyinen_teksti]
-    #            purettu_teksti += merkki
-    #            nykyinen_teksti = ""
-    #    return purettu_teksti
-
+        return [puu, teksti]
