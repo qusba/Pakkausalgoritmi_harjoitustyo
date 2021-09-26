@@ -21,6 +21,7 @@ def huffman_pakkaa(huffmankoodaus_olio):
 
         ilmaantuvuus = huffmankoodaus_olio.luo_ilmaantuvuus_sanakirja(teksti)
         huffmannin_puu = huffmankoodaus_olio.luo_puu(ilmaantuvuus)
+        huffmannin_puu_bitteinä = huffmankoodaus_olio.muuta_puu_biteiksi(huffmannin_puu)
         uudet_bittikoodit = huffmankoodaus_olio.tallenna_koodit(huffmannin_puu)
 
         koodattu_teksti = huffmankoodaus_olio.muuta_teksti_biteiksi(teksti)
@@ -34,4 +35,5 @@ def huffman_pakkaa(huffmankoodaus_olio):
         print("Pakkaus valmis")
         print(output_polku)
         return output_polku
+
     

@@ -17,6 +17,7 @@ class HuffmanKoodaus:
         self.input_polku = inputpolku
         self.bittiesitykset = {}
         self.kaanteiset_bittiesitykset = {}
+        self.puun_bittikoodi = ""
 
     def luo_ilmaantuvuus_sanakirja(self, teksti):
         """ Funktio joka laskee tiedoston merkit ja niiden ilmaantuvuuden ja luo tiedoista sanakirjan.
@@ -60,6 +61,16 @@ class HuffmanKoodaus:
             solmut.remove(oikea_solmu)
 
         return solmut[0]
+    
+    def muuta_puu_biteiksi(self,solmu):
+        
+        if solmu.vasen_lapsi is None and solmu.oikea_lapsi is None:
+            self.puun_bittikoodi += "1" + "{0:08b}".format(ord(solmu.merkki))
+        else:
+            self.puun_bittikoodi += "0"
+            self.muuta_puu_biteiksi(solmu.vasen_lapsi)
+            self.muuta_puu_biteiksi(solmu.oikea_lapsi)
+        return self.puun_bittikoodi
 
     def tallenna_koodit(self, solmu, bittiesitys=""):
         """Funktio, joka tallentaa konstruktorin luomaan self.bittiesitykset sanakirjaan Huffmannin puun mukaiset merkkien uudet bittiesitykset.
@@ -103,6 +114,9 @@ class HuffmanKoodaus:
         Returns:
             Koodattu_teksti: [Valmiiksi hiottu bittimerkkijono.]
         """
+        puun_pituus = len(self.puun_bittikoodi)
+        puun_pituus_info = "{0:16b}".format(puun_pituus)
+        koodattu_teksti = self.puun_bittikoodi + koodattu_teksti
         ylijaamabitit = 8 - (len(koodattu_teksti) % 8)
         for i in range(ylijaamabitit):
             koodattu_teksti += "0"
@@ -134,15 +148,28 @@ class HuffmanKoodaus:
 
         return koodattu_teksti
     
-    def muuta_tavut_tekstiksi(self,bittimerkkijono):
-        purettu_teksti = ""
-        nykyinen_teksti = ""
+    def irroita_puu(self,bittimerkkijono):
+        puun_info = bittimerkkijono[:16]
+        puun_pituus = int(puun_info,2)
+        puu = bittimerkkijono[:puun_pituus]
+        teksti = bittimerkkijono[puun_pituus:]
+        print(puu)
 
-        for bitti in bittimerkkijono:
-            nykyinen_teksti += bitti
-            if nykyinen_teksti in self.kaanteiset_bittiesitykset:
-                merkki = self.kaanteiset_bittiesitykset[nykyinen_teksti]
-                purettu_teksti += merkki
-                nykyinen_teksti = ""
-        return purettu_teksti
+        return [puu,teksti]
+
+
+    
+   # def muuta_tavut_tekstiksi(self,eritelty_teksti):
+   #     purettu_teksti = ""
+   #     nykyinen_teksti = ""#
+
+   #     for bitti in eritelty_teksti[0]: #rakennetaan puu uudelleen
+    #        
+    #    for bitti in eritelty_teksti[1]:
+    #        nykyinen_teksti += bitti
+    #        if nykyinen_teksti in self.kaanteiset_bittiesitykset:
+    #            merkki = self.kaanteiset_bittiesitykset[nykyinen_teksti]
+    #            purettu_teksti += merkki
+    #            nykyinen_teksti = ""
+    #    return purettu_teksti
 

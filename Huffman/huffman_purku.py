@@ -1,6 +1,7 @@
 import os 
 from huffman_koodaus import HuffmanKoodaus
 from Huffman_pakkaus import huffman_pakkaa
+from huffman_solmu import HuffmanSolmu
 
 def huffman_purku(huffmankoodaus_olio,binääritiedosto_polku):
     tiedostonimi, tiedostotyyppi = os.path.splitext(binääritiedosto_polku)
@@ -17,12 +18,16 @@ def huffman_purku(huffmankoodaus_olio,binääritiedosto_polku):
             tavu = tiedosto.read(1)
         
         koodattu_teksti = huffmankoodaus_olio.poista_taytto(bittiteksti)
-        purettu_teksti = huffmankoodaus_olio.muuta_tavut_tekstiksi(koodattu_teksti)
+        eritelty_teksti = huffmankoodaus_olio.irroita_puu(koodattu_teksti)
+        uusi_puu = uudelleenrakenna_puu(eritelty_teksti[0])
+        print(uusi_puu)
+        #purettu_teksti = huffmankoodaus_olio.muuta_tavut_tekstiksi(eritelty_teksti)
 
-        optiedosto.write(purettu_teksti)
+        optiedosto.write(uusi_puu)
     print("Purku valmis")
     print(output_polku)
     return output_polku
+
 
 alkuperainen = HuffmanKoodaus("/home/kasperka/unicafe.txt")
 pakattu = huffman_pakkaa(alkuperainen)
