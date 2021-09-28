@@ -17,7 +17,6 @@ def huffman_pakkaa(huffmankoodaus_olio):
 
     with open(huffmankoodaus_olio.input_polku, "r") as tiedosto, open(output_polku, "wb") as optiedosto:
         teksti = tiedosto.read()
-        teksti = teksti.rstrip()
 
         ilmaantuvuus = huffmankoodaus_olio.luo_ilmaantuvuus_sanakirja(teksti)
         huffmannin_puu = huffmankoodaus_olio.luo_puu(ilmaantuvuus)

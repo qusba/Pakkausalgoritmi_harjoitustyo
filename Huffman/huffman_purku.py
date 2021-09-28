@@ -67,7 +67,8 @@ def luo_puu_uudelleen(bitti):
         return HuffmanSolmu(merkki, 0)
 
     elif bitti == "0":
-        indeksi += 1
+        if indeksi < len(puun_koodi)-1:
+            indeksi += 1
         vasen_lapsi = luo_puu_uudelleen(puun_koodi[indeksi])
         oikea_lapsi = luo_puu_uudelleen(puun_koodi[indeksi])
         return HuffmanSolmu(None, 0, vasen_lapsi, oikea_lapsi)
@@ -101,5 +102,4 @@ def kaanna_teksti_puun_avulla(bittiteksti, solmu):
     return kaannettu_teksti
 
 
-alkuperainen = HuffmanKoodaus("/home/kasperka/testi.txt")
-purettu = huffman_purku(alkuperainen, "/home/kasperka/testi.bin")
+

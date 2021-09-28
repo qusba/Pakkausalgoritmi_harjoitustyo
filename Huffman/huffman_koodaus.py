@@ -1,4 +1,5 @@
 from huffman_solmu import HuffmanSolmu
+import math
 
 
 class HuffmanKoodaus:
@@ -92,7 +93,6 @@ class HuffmanKoodaus:
             return
         if solmu.merkki != None:
             self.bittiesitykset[solmu.merkki] = bittiesitys
-            self.kaanteiset_bittiesitykset[bittiesitys] = solmu.merkki
 
         self.tallenna_koodit(solmu.vasen_lapsi, bittiesitys + "0")
         self.tallenna_koodit(solmu.oikea_lapsi, bittiesitys + "1")
@@ -123,15 +123,39 @@ class HuffmanKoodaus:
         Returns:
             Koodattu_teksti: [Valmiiksi hiottu bittimerkkijono.]
         """
+
         puun_pituus = len(self.puun_bittikoodi)
-        puun_pituus_info = "{0:08b}".format(puun_pituus)
-        koodattu_teksti = self.puun_bittikoodi + koodattu_teksti
-        koodattu_teksti = puun_pituus_info + koodattu_teksti
+
+        # täytetään puun bittikoodi 8 jaolliseksi
+        self.puun_bittikoodi = (8-puun_pituus % 8)*"0" + self.puun_bittikoodi
+        puun_taytto_info = 8-puun_pituus % 8
+
+        # tallennetaan info siitä, kuinka monta bittiä on täytetty
+        puun_taytto_info = "{0:08b}".format(puun_taytto_info)
+        puun_pituus = len(self.puun_bittikoodi)
+
+        # laskee kuinka monta bittiä tarvitaan puun pituuden ilmoittavan kokonaisluvun tallentamiseen
+        puuhun_tarvittavat_bitit = math.ceil(math.log(puun_pituus, 2))
+
+        # muuttaa lasketun luvun 8-bittiseksi
+        info_biteista = "{0:08b}".format(puuhun_tarvittavat_bitit)
+
+        puuhun_tarvittavat_bitit = "0"+str(puuhun_tarvittavat_bitit)+"b"
+
+        # formatoidaan puun pituus x-bittiseksi
+        puun_pituus_info = format(puun_pituus, puuhun_tarvittavat_bitit)
+
+        # lisätään merkkijonoon puu ja erinäiset infobitit
+        koodattu_teksti = puun_taytto_info + info_biteista + \
+            puun_pituus_info + self.puun_bittikoodi + \
+            koodattu_teksti  
+
         ylijaamabitit = 8 - (len(koodattu_teksti) % 8)
         for i in range(ylijaamabitit):
             koodattu_teksti += "0"
-
         tayttoinfo = "{0:08b}".format(ylijaamabitit)
+
+        # täydennetään kokonaisuus 8 jaolliseksi, lisätään info täytöstä
         koodattu_teksti = tayttoinfo + koodattu_teksti
         return koodattu_teksti
 
@@ -151,7 +175,7 @@ class HuffmanKoodaus:
         return tavut
 
     def poista_taytto(self, bittimerkkijono):
-        """Funktio, joka poistaa tayta_tavut() funktion lisäämät ylimääräiset bitit.
+        """Funktio, joka poistaa tayta_tavut() funktion lisäämät ylimääräiset bitit merkkijonon lopusta.
 
         Parametrit:
             bittimerkkijono: ["Bitti" muodossa oleva merkkijono, joka on pakattu huffman_pakkaa() funktiolla]
@@ -159,9 +183,11 @@ class HuffmanKoodaus:
         Palauttaa:
             koodattu_teksti: [Merkkijono, josta on poistettu ylimääräiset bitit lopusta, sekä informaatio niiden määrästä alusta.]
         """
+        # erottelee informaation loppuun lisätyistä biteistä
         tayttoinfo = bittimerkkijono[:8]
         ylijaamabitit = int(tayttoinfo, 2)
         bittimerkkijono = bittimerkkijono[8:]
+        # poistaa lopusta lisätyt bitit
         koodattu_teksti = bittimerkkijono[:-1*ylijaamabitit]
 
         return koodattu_teksti
@@ -175,9 +201,28 @@ class HuffmanKoodaus:
         Palauttaa:
             [puu, teksti]: [Lista, jossa on kaksi alkiota: Huffmannin puu indeksissä 0, sekä koodattu teksti indeksissä 1]
         """
-        puun_info = bittimerkkijono[:8]
-        puun_pituus = int(puun_info, 2)
+        # erotellaan informaatio puuhun täytetyistä biteistä
+        puun_taytto_info = bittimerkkijono[:8]
+        puun_taytto_info = int(puun_taytto_info, 2)
+        # poistetaan täyttöinfo merkkijonosta
         bittimerkkijono = bittimerkkijono[8:]
-        puu = bittimerkkijono[:puun_pituus]
-        teksti = bittimerkkijono[puun_pituus:]
+
+        # erotellaan informaatio siitä, kuinka monessa bitissä puun pituus on ilmoitettu
+        info_biteista = bittimerkkijono[:8]
+        info_biteista = int(info_biteista, 2)
+        # poistetaan täyttöinfo merkkijonosta
+        bittimerkkijono = bittimerkkijono[8:]
+
+        # erotellaan puun pituuden kertovat bitit merkkijonosta
+        puun_pituus_info = bittimerkkijono[:info_biteista]
+        puun_pituus_info = int(puun_pituus_info, 2)
+        # poistetaan täyttöinfo
+        bittimerkkijono = bittimerkkijono[info_biteista:]
+
+        # erotellaan puu merkkijonosta
+        puu = bittimerkkijono[:puun_pituus_info]
+        puu = puu[puun_taytto_info:]  # poistetaan puusta täytetyt bitit
+        # erotellaan teksti merkkijonosta
+        teksti = bittimerkkijono[puun_pituus_info:]
+
         return [puu, teksti]
