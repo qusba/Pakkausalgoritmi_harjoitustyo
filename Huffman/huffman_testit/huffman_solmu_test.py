@@ -1,5 +1,5 @@
 import unittest
-import Huffman
+from huffman_solmu import HuffmanSolmu
 
 class TestHuffmanSolmu(unittest.TestCase):
     def setUp(self):
