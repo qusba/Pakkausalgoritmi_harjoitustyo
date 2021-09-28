@@ -6,6 +6,7 @@ authors = ["qusba <kasper.kahkonen@outlook.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.6"
+invoke = "^1.6.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.5"
