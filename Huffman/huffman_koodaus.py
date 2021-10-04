@@ -1,5 +1,5 @@
-from huffman_solmu import HuffmanSolmu
 import math
+from huffman_solmu import HuffmanSolmu
 
 
 class HuffmanKoodaus:
@@ -79,6 +79,7 @@ class HuffmanKoodaus:
             self.puun_bittikoodi += "0"
             self.muuta_puu_biteiksi(solmu.vasen_lapsi)
             self.muuta_puu_biteiksi(solmu.oikea_lapsi)
+        
         return self.puun_bittikoodi
 
     def tallenna_koodit(self, solmu, bittiesitys=""):
@@ -89,9 +90,9 @@ class HuffmanKoodaus:
             solmu ([type]): [Huffmannin puun juurisomu, saadaan funktiolta "luo_puu"]
             bittiesitys: [Tyhjä merkkijono, johon rakentuvat uudet bittiesitykset rekursion edetessä]. Oletuksena "".
         """
-        if solmu == None:
+        if solmu is None:
             return
-        if solmu.merkki != None:
+        if solmu.merkki is not None:
             self.bittiesitykset[solmu.merkki] = bittiesitys
 
         self.tallenna_koodit(solmu.vasen_lapsi, bittiesitys + "0")
@@ -135,7 +136,8 @@ class HuffmanKoodaus:
         puun_pituus = len(self.puun_bittikoodi)
 
         # laskee kuinka monta bittiä tarvitaan puun pituuden ilmoittavan kokonaisluvun tallentamiseen
-        puuhun_tarvittavat_bitit = math.ceil(math.log(puun_pituus, 2))
+        puuhun_tarvittavat_bitit = (math.log(puun_pituus, 2)) + 0.1
+        puuhun_tarvittavat_bitit = math.ceil(puuhun_tarvittavat_bitit)
 
         # muuttaa lasketun luvun 8-bittiseksi
         info_biteista = "{0:08b}".format(puuhun_tarvittavat_bitit)
@@ -148,10 +150,10 @@ class HuffmanKoodaus:
         # lisätään merkkijonoon puu ja erinäiset infobitit
         koodattu_teksti = puun_taytto_info + info_biteista + \
             puun_pituus_info + self.puun_bittikoodi + \
-            koodattu_teksti  
+            koodattu_teksti
 
         ylijaamabitit = 8 - (len(koodattu_teksti) % 8)
-        for i in range(ylijaamabitit):
+        for i in range(ylijaamabitit): #pylint: disable W0612
             koodattu_teksti += "0"
         tayttoinfo = "{0:08b}".format(ylijaamabitit)
 
@@ -172,6 +174,7 @@ class HuffmanKoodaus:
         for i in range(0, len(taytetty_koodattu_teksti), 8):
             tavu = taytetty_koodattu_teksti[i:i+8]
             tavut.append(int(tavu, 2))
+        print(tavut)
         return tavut
 
     def poista_taytto(self, bittimerkkijono):
@@ -224,5 +227,5 @@ class HuffmanKoodaus:
         puu = puu[puun_taytto_info:]  # poistetaan puusta täytetyt bitit
         # erotellaan teksti merkkijonosta
         teksti = bittimerkkijono[puun_pituus_info:]
-
+        
         return [puu, teksti]

@@ -1,0 +1,3 @@
+[run]
+source = Huffman,Lempel-Ziv
+omit = Huffman/**/__init__.py,Huffman/huffman_testit/**

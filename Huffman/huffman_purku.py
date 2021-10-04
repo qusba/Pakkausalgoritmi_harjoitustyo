@@ -1,5 +1,5 @@
 import os
-from huffman_koodaus import HuffmanKoodaus
+from huffman_koodaus import HuffmanKoodaus #pylint: disable W0611
 from Huffman_pakkaus import huffman_pakkaa
 from huffman_solmu import HuffmanSolmu
 
@@ -52,7 +52,7 @@ def luo_puu_uudelleen(bitti):
     Lukee puun_koodi muuttujassa sijaitsevasta merkkijonosta yhden merkin kerrallaan indeksi muuttujan avulla.
 
     Parametrit:
-        bitti: [Puun koodista yksi merkki]
+        bitti: [puun koodista yksi merkki]
 
     Palauttaa:
         HuffmanSolmu: [Valmis Huffmannin puu]
@@ -66,7 +66,7 @@ def luo_puu_uudelleen(bitti):
         indeksi = indeksi + 9
         return HuffmanSolmu(merkki, 0)
 
-    elif bitti == "0":
+    else:
         if indeksi < len(puun_koodi)-1:
             indeksi += 1
         vasen_lapsi = luo_puu_uudelleen(puun_koodi[indeksi])
@@ -101,5 +101,6 @@ def kaanna_teksti_puun_avulla(bittiteksti, solmu):
 
     return kaannettu_teksti
 
-
-
+alkuperainen = HuffmanKoodaus("/home/kasperka/testi.txt")
+pakattu = huffman_pakkaa(alkuperainen)
+purettu = huffman_purku(alkuperainen,pakattu)
