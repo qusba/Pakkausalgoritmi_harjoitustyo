@@ -12,6 +12,8 @@ Puun avulla voidaan muodostaa jokaiselle merkille uusi bittiesitysmuoto. Aloitet
 
 Nyt teksti voidaan kirjoittaa binäärinä tiedostoon. Mukaan täytyy myös kirjoittaa itse puu binäärinä, jotta purku onnistuu jälkeenpäin. Purkaessa puu irroitetaan bittijonosta ja muodostetaan uudelleen, jonka jälkeen sitä käytetään tekstin uudelleenkirjoittamiseen.
 
+### Aikavaativuudesta
+
 Huffman koodauksessa puun muodostaminen vaatii O(nlogn) verran aikaa, sillä puun koko riippuu syötteen koosta ja muodostamisessa on käytettävä järjestämistä, joka toimii logaritmisessa ajassa. Purkamisen tulisi toimia O(n) ajassa, sillä puu muodostetaan purkaessa vain lukemalla bittejä järjestyksessä.
 
 
