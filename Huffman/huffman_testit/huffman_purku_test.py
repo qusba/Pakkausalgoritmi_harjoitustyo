@@ -1,6 +1,6 @@
 import unittest
 from huffman_koodaus import HuffmanKoodaus
-from Huffman_pakkaus import huffman_pakkaa
+from huffman_pakkaus import huffman_pakkaa
 from huffman_purku import huffman_purku
 from huffman_purku import luo_puu_uudelleen
 from huffman_purku import kaanna_teksti_puun_avulla

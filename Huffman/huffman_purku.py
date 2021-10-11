@@ -1,6 +1,6 @@
 import os
 from huffman_koodaus import HuffmanKoodaus  # pylint: disable W0611
-from Huffman_pakkaus import huffman_pakkaa
+from huffman_pakkaus import huffman_pakkaa
 from huffman_solmu import HuffmanSolmu
 
 
@@ -119,3 +119,6 @@ def kaanna_teksti_puun_avulla(bittiteksti, solmu, puun_tiedot_olio):
                 solmu = puun_tiedot_olio.puu
 
     return kaannettu_teksti
+
+pakattu = huffman_pakkaa("/home/kasperka/testi2.txt")
+purettu = huffman_purku(pakattu)
