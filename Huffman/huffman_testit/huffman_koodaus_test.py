@@ -5,7 +5,7 @@ from huffman_koodaus import HuffmanKoodaus
 class TestHuffmanKoodaus(unittest.TestCase):
     def setUp(self):
         self.teksti = "AAAAAABCCCCCCDDEEEEE\n"
-        self.olio = HuffmanKoodaus("/home/kasperka/testi.txt")
+        self.olio = HuffmanKoodaus()
         self.sanakirja = self.olio.luo_ilmaantuvuus_sanakirja(self.teksti)
         self.puu = self.olio.luo_puu(self.sanakirja)
         self.olio.tallenna_koodit(self.puu)
