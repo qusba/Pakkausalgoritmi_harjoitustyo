@@ -7,15 +7,14 @@ class HuffmanKoodaus:
 
     """
 
-    def __init__(self, inputpolku):
+    def __init__(self):
         """ Luokan konstruktori.
 
         Parametrit:
-        input_polku: Polku tiedostoon joka halutaan pakata.
         bittiesitykset: Sanakirja, jota tarvitaan Huffmannin puun mukaisten merkkien uusien bittiesitysten tallentamiseen.
         puun_bittikoodi: Merkkijono, johon tallennetaan Huffmannin puu bitteinä.
         """
-        self.input_polku = inputpolku
+    
         self.bittiesitykset = {}
         self.puun_bittikoodi = ""
 

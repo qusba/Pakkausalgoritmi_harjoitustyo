@@ -26,13 +26,12 @@ def huffman_purku(binääritiedosto_polku):
     """Funktio, joka muutamaa apufunktiota käyttäen hoitaa Huffman pakatun tiedoston purkamisen.
 
     Parametrit:
-        huffmankoodaus_olio: [HuffmanKoodaus luokan olio, tarvitaan luokan sisältämien funktioiden käyttöön.]
         binääritiedosto_polku: [Polku binääritiedostoon, joka halutaan purkaa.]
 
     Palauttaa:
         output_polku: [Polku purettuun tiedostoon.]
     """
-    huffmankoodaus_olio = HuffmanKoodaus("")
+    huffmankoodaus_olio = HuffmanKoodaus()
     tiedostonimi, tiedostotyyppi = os.path.splitext(binääritiedosto_polku)
     output_polku = tiedostonimi + "_purettu" + ".txt"
 
@@ -70,6 +69,7 @@ def luo_puu_uudelleen(bitti, puun_tiedot_olio):
 
     Parametrit:
         bitti: [puun koodista yksi merkki]
+        puun_tiedot_olio: [huffman_purku -funktiossa luotu puun_tiedot_olio, tarvitaan funktion ulkopuolisten muuttujien käyttöön.]
 
     Palauttaa:
         HuffmanSolmu: [Valmis Huffmannin puu]
@@ -94,11 +94,13 @@ def luo_puu_uudelleen(bitti, puun_tiedot_olio):
 def kaanna_teksti_puun_avulla(bittiteksti, solmu, puun_tiedot_olio):
     """ Funktio, joka käyttää Huffmannin puuta bittitekstin kääntämiseen takaisin merkeiksi.
 
-    Args:
+    Parametrit:
         bittiteksti: [Käännettävän binääritiedoston eroteltu tekstiosa]
         solmu: [Huffmannin puun juurisolmu]
+        puun_tiedot_olio: [huffman_purku -funktiossa luotu puun_tiedot_olio, tarvitaan funktion ulkopuolisten muuttujien käyttöön.]
+]
 
-    Returns:
+    Palauttaa:
         kaannettu_teksti: [Valmis teksti, joka voidaan kirjottaa uuteen tiedostoon.]
     """
 

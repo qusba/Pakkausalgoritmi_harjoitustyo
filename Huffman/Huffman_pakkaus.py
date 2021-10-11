@@ -6,12 +6,12 @@ def huffman_pakkaa(input_polku):
     """Funktio luo uuden pakatun tiedoston.
 
     Parametrit:
-        huffmankoodaus_olio: [HuffmanKoodaus luokan luoma olio.]
+        input_polku: [Polku tiedostoon, joka halutaan pakata.]
 
     Palauttaa:
         output_polku: [Uuden pakatun tiedoston tiedostopolku.]
     """
-    huffmankoodaus_olio = HuffmanKoodaus("")
+    huffmankoodaus_olio = HuffmanKoodaus()
     tiedostonimi, tiedostotyyppi = os.path.splitext(input_polku)
     output_polku = tiedostonimi + "_Huffman"+".bin"
 
