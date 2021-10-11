@@ -11,7 +11,7 @@ class HuffmanKoodaus:
         """ Luokan konstruktori.
 
         Parametrit:
-        input_polku: Polku tiedostoon joka halutaan pakata ilmaistuna stringinä.
+        input_polku: Polku tiedostoon joka halutaan pakata.
         bittiesitykset: Sanakirja, jota tarvitaan Huffmannin puun mukaisten merkkien uusien bittiesitysten tallentamiseen.
         puun_bittikoodi: Merkkijono, johon tallennetaan Huffmannin puu bitteinä.
         """
@@ -79,7 +79,7 @@ class HuffmanKoodaus:
             self.puun_bittikoodi += "0"
             self.muuta_puu_biteiksi(solmu.vasen_lapsi)
             self.muuta_puu_biteiksi(solmu.oikea_lapsi)
-        
+
         return self.puun_bittikoodi
 
     def tallenna_koodit(self, solmu, bittiesitys=""):
@@ -153,7 +153,7 @@ class HuffmanKoodaus:
             koodattu_teksti
 
         ylijaamabitit = 8 - (len(koodattu_teksti) % 8)
-        for i in range(ylijaamabitit): #pylint: disable W0612
+        for i in range(ylijaamabitit):  # pylint: disable W0612
             koodattu_teksti += "0"
         tayttoinfo = "{0:08b}".format(ylijaamabitit)
 
@@ -174,7 +174,6 @@ class HuffmanKoodaus:
         for i in range(0, len(taytetty_koodattu_teksti), 8):
             tavu = taytetty_koodattu_teksti[i:i+8]
             tavut.append(int(tavu, 2))
-        print(tavut)
         return tavut
 
     def poista_taytto(self, bittimerkkijono):
@@ -227,5 +226,5 @@ class HuffmanKoodaus:
         puu = puu[puun_taytto_info:]  # poistetaan puusta täytetyt bitit
         # erotellaan teksti merkkijonosta
         teksti = bittimerkkijono[puun_pituus_info:]
-        
+
         return [puu, teksti]

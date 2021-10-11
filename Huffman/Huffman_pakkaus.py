@@ -13,7 +13,7 @@ def huffman_pakkaa(huffmankoodaus_olio):
     """
     tiedostonimi, tiedostotyyppi = os.path.splitext(
         huffmankoodaus_olio.input_polku)
-    output_polku = tiedostonimi + ".bin"
+    output_polku = tiedostonimi + "_Huffman"+".bin"
 
     with open(huffmankoodaus_olio.input_polku, "r") as tiedosto, open(output_polku, "wb") as optiedosto:
         teksti = tiedosto.read()
@@ -35,3 +35,4 @@ def huffman_pakkaa(huffmankoodaus_olio):
         print("Pakkaus valmis")
         print(output_polku)
         return output_polku
+    

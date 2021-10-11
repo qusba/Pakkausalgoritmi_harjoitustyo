@@ -1,5 +1,5 @@
 import os
-from huffman_koodaus import HuffmanKoodaus #pylint: disable W0611
+from huffman_koodaus import HuffmanKoodaus  # pylint: disable W0611
 from Huffman_pakkaus import huffman_pakkaa
 from huffman_solmu import HuffmanSolmu
 
@@ -15,7 +15,7 @@ def huffman_purku(huffmankoodaus_olio, binääritiedosto_polku):
         output_polku: [Polku purettuun tiedostoon.]
     """
     tiedostonimi, tiedostotyyppi = os.path.splitext(binääritiedosto_polku)
-    output_polku = tiedostonimi + "(purettu)" + ".txt"
+    output_polku = tiedostonimi + "_purettu" + ".txt"
 
     with open(binääritiedosto_polku, "rb") as tiedosto, open(output_polku, "w") as optiedosto:
         bittiteksti = ""
@@ -100,7 +100,3 @@ def kaanna_teksti_puun_avulla(bittiteksti, solmu):
                 solmu = puu
 
     return kaannettu_teksti
-
-alkuperainen = HuffmanKoodaus("/home/kasperka/testi.txt")
-pakattu = huffman_pakkaa(alkuperainen)
-purettu = huffman_purku(alkuperainen,pakattu)
