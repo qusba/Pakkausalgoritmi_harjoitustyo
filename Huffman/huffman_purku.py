@@ -4,7 +4,25 @@ from Huffman_pakkaus import huffman_pakkaa
 from huffman_solmu import HuffmanSolmu
 
 
-def huffman_purku(huffmankoodaus_olio, binääritiedosto_polku):
+class PuunTiedot:
+    """Apuluokka Huffmannin puun uudelleenrakennusta varten.
+
+    """
+
+    def __init__(self, puun_koodi, indeksi, puu):
+        """Luokan konstruktori.
+
+        Args:
+            puun_koodi: [Huffmannin puu merkkijonona]
+            indeksi: [Apumuttuja indeksointiin]
+            puu: [Muuttuja, johon valmis puu tallennetaan. Hyödynnetään kääntäessä.]
+        """
+        self.puun_koodi = puun_koodi
+        self.indeksi = indeksi
+        self.puu = puu
+
+
+def huffman_purku(binääritiedosto_polku):
     """Funktio, joka muutamaa apufunktiota käyttäen hoitaa Huffman pakatun tiedoston purkamisen.
 
     Parametrit:
@@ -14,6 +32,7 @@ def huffman_purku(huffmankoodaus_olio, binääritiedosto_polku):
     Palauttaa:
         output_polku: [Polku purettuun tiedostoon.]
     """
+    huffmankoodaus_olio = HuffmanKoodaus("")
     tiedostonimi, tiedostotyyppi = os.path.splitext(binääritiedosto_polku)
     output_polku = tiedostonimi + "_purettu" + ".txt"
 
@@ -29,14 +48,12 @@ def huffman_purku(huffmankoodaus_olio, binääritiedosto_polku):
 
         koodattu_teksti = huffmankoodaus_olio.poista_taytto(bittiteksti)
         eritelty_teksti = huffmankoodaus_olio.irroita_puu(koodattu_teksti)
-        global puun_koodi
-        puun_koodi = eritelty_teksti[0]
-        global indeksi
-        indeksi = 0
-        uusi_puu = luo_puu_uudelleen(puun_koodi[indeksi])
-        global puu
-        puu = uusi_puu
-        lopputulos = kaanna_teksti_puun_avulla(eritelty_teksti[1], uusi_puu)
+        puun_tiedot_olio = PuunTiedot(eritelty_teksti[0], 0, None)
+        uusi_puu = luo_puu_uudelleen(
+            puun_tiedot_olio.puun_koodi[puun_tiedot_olio.indeksi], puun_tiedot_olio)
+        puun_tiedot_olio.puu = uusi_puu
+        lopputulos = kaanna_teksti_puun_avulla(
+            eritelty_teksti[1], uusi_puu, puun_tiedot_olio)
         optiedosto.write(lopputulos)
 
     print("Purku valmis")
@@ -44,7 +61,7 @@ def huffman_purku(huffmankoodaus_olio, binääritiedosto_polku):
     return output_polku
 
 
-def luo_puu_uudelleen(bitti):
+def luo_puu_uudelleen(bitti, puun_tiedot_olio):
     """Funktio, joka luo uudelleen Huffmannin puun tiedostosta löytyvän informaation avulla.
 
     Käyttää hyväkseen globaaleja muuttujia puun_koodi, sekä indeksi, jotka on alustettu huffman_purku() funktiossa.
@@ -58,23 +75,23 @@ def luo_puu_uudelleen(bitti):
         HuffmanSolmu: [Valmis Huffmannin puu]
     """
 
-    global puun_koodi
-    global indeksi
-
     if bitti == "1":
-        merkki = chr(int(puun_koodi[indeksi+1:indeksi+9], 2))
-        indeksi = indeksi + 9
+        merkki = chr(int(
+            puun_tiedot_olio.puun_koodi[puun_tiedot_olio.indeksi+1:puun_tiedot_olio.indeksi+9], 2))
+        puun_tiedot_olio.indeksi = puun_tiedot_olio.indeksi + 9
         return HuffmanSolmu(merkki, 0)
 
     else:
-        if indeksi < len(puun_koodi)-1:
-            indeksi += 1
-        vasen_lapsi = luo_puu_uudelleen(puun_koodi[indeksi])
-        oikea_lapsi = luo_puu_uudelleen(puun_koodi[indeksi])
+        if puun_tiedot_olio.indeksi < len(puun_tiedot_olio.puun_koodi)-1:
+            puun_tiedot_olio.indeksi += 1
+        vasen_lapsi = luo_puu_uudelleen(
+            puun_tiedot_olio.puun_koodi[puun_tiedot_olio.indeksi], puun_tiedot_olio)
+        oikea_lapsi = luo_puu_uudelleen(
+            puun_tiedot_olio.puun_koodi[puun_tiedot_olio.indeksi], puun_tiedot_olio)
         return HuffmanSolmu(None, 0, vasen_lapsi, oikea_lapsi)
 
 
-def kaanna_teksti_puun_avulla(bittiteksti, solmu):
+def kaanna_teksti_puun_avulla(bittiteksti, solmu, puun_tiedot_olio):
     """ Funktio, joka käyttää Huffmannin puuta bittitekstin kääntämiseen takaisin merkeiksi.
 
     Args:
@@ -84,19 +101,19 @@ def kaanna_teksti_puun_avulla(bittiteksti, solmu):
     Returns:
         kaannettu_teksti: [Valmis teksti, joka voidaan kirjottaa uuteen tiedostoon.]
     """
-    global puu
+
     kaannettu_teksti = ""
     for bitti in bittiteksti:
         if bitti == "0" and solmu.vasen_lapsi is not None:
             solmu = solmu.vasen_lapsi
             if solmu.vasen_lapsi is None:
                 kaannettu_teksti += solmu.merkki
-                solmu = puu
+                solmu = puun_tiedot_olio.puu
 
         if bitti == "1" and solmu.oikea_lapsi is not None:
             solmu = solmu.oikea_lapsi
             if solmu.oikea_lapsi is None:
                 kaannettu_teksti += solmu.merkki
-                solmu = puu
+                solmu = puun_tiedot_olio.puu
 
     return kaannettu_teksti

@@ -2,7 +2,7 @@ import os
 from huffman_koodaus import HuffmanKoodaus
 
 
-def huffman_pakkaa(huffmankoodaus_olio):
+def huffman_pakkaa(input_polku):
     """Funktio luo uuden pakatun tiedoston.
 
     Parametrit:
@@ -11,11 +11,11 @@ def huffman_pakkaa(huffmankoodaus_olio):
     Palauttaa:
         output_polku: [Uuden pakatun tiedoston tiedostopolku.]
     """
-    tiedostonimi, tiedostotyyppi = os.path.splitext(
-        huffmankoodaus_olio.input_polku)
+    huffmankoodaus_olio = HuffmanKoodaus("")
+    tiedostonimi, tiedostotyyppi = os.path.splitext(input_polku)
     output_polku = tiedostonimi + "_Huffman"+".bin"
 
-    with open(huffmankoodaus_olio.input_polku, "r") as tiedosto, open(output_polku, "wb") as optiedosto:
+    with open(input_polku, "r") as tiedosto, open(output_polku, "wb") as optiedosto:
         teksti = tiedosto.read()
 
         ilmaantuvuus = huffmankoodaus_olio.luo_ilmaantuvuus_sanakirja(teksti)
@@ -35,4 +35,3 @@ def huffman_pakkaa(huffmankoodaus_olio):
         print("Pakkaus valmis")
         print(output_polku)
         return output_polku
-    
