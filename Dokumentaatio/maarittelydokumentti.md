@@ -2,7 +2,7 @@
 
 ## Projekti
 
-Projektin tavoite on toteuttaa Huffmannin ja Lempel-Zivin pakkausalgoritmit käyttäen Python-ohjelmointikieltä.
+Projektin tavoite on toteuttaa Huffmannin ja Lempel-Ziv-Welch pakkausalgoritmit käyttäen Python-ohjelmointikieltä.
 Algoritmien toteuttamisen jälkeen on tarkoituksena vertailla niiden suorituskykyä eri syötteillä. Toivottava tehokkuus tekstiä pakatessa on 40-60% tiedoston alkuperäisestä koosta.
 
 Valitsin aiheeksi tiedonpakkaamisen, sillä se ei ole minulle entuudestaan tuttua. Huffmanin ja Lempel-Zivin algoritmit oli mainittu kurssin materiaalissa, joten päätin ottaa ne projektiin mukaan.
