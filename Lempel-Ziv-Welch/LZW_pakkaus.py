@@ -29,4 +29,3 @@ def LZW_pakkaa(input_polku):
         print("Pakkaus valmis")
         return output_polku
     
-LZW_pakkaa("/home/kasperka/testi.txt")
