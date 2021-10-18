@@ -15,5 +15,4 @@ Lempel-Ziv-Welchin yksikkötestaus on teoteutettu samaan tapaan kuin Huffmannin 
 Testit voidaan ajaa terminaalissa komennolla "pytest Lempel-Ziv-Welch"- Testien haarautumakattavuuden voi tuottaa komennolla "poetry run invoke LZW-coverage-report".
 
 Alla kuva Haarautuvuuskattavuudesta:
-
-#lisää kuva, kun huffman testit taas toimivat.
+![LZW_coverage](https://user-images.githubusercontent.com/81024277/137769379-9b0187a2-07b2-4d3c-9fde-14b28a852988.png)
