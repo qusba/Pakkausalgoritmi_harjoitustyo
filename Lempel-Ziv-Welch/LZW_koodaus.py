@@ -6,13 +6,10 @@ class LZWKoodaus():
 
     """
 
-    def __init__(self, inputpolku):
+    def __init__(self):
         """Luokan konstruktori.
 
-        Parametrit:
-            inputpolku: [Polku tiedostoon, joka halutaan pakata.]
         """
-        self.input_polku = inputpolku
 
     def luo_tuloste_pakatessa(self, teksti):
         """Funktio, joka luo tulosteen, mikä koostuu kirjainten ja kirjainyhdistelmien kokonaislukuesityksistä.
@@ -97,6 +94,7 @@ class LZWKoodaus():
             bittikoodi += "0"
 
         bittikoodi = taytto_info + bittikoodi
+        
         return bittikoodi
 
     def muuta_bittikoodi_tavuiksi(self, bittikoodi):

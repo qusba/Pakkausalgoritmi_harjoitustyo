@@ -2,21 +2,22 @@ import os
 from LZW_koodaus import LZWKoodaus
 
 
-def LZW_pakkaa(LZWKoodaus_olio):
+def LZW_pakkaa(input_polku):
     """Funktio, joka kutsuu LZWKoodaus -luokan funktioita pakatakseen tiedoston LZW-menetelmällä.
 
     Parametrit:
-        LZWKoodaus_olio: [LZWKoodaus -luokan olio, tarvitaan funktioiden kutsumiseen.]
+        input_polku: [Polku tiedostoon, joka halutaan pakata.]
 
     Returns:
         output_polku: [Polku pakattuun tiedostoon.]
     """
 
-    tiedostonimi, tiedostotyyppi = os.path.splitext(
-        LZWKoodaus_olio.input_polku)
+    tiedostonimi, tiedostotyyppi = os.path.splitext(input_polku)
     output_polku = tiedostonimi + "_LZW" ".bin"
+    LZWKoodaus_olio = LZWKoodaus()
+    print(input_polku)
 
-    with open(LZWKoodaus_olio.input_polku, "r") as tiedosto, open(output_polku, "wb") as optiedosto:
+    with open(input_polku, "r") as tiedosto, open(output_polku, "wb") as optiedosto:
         teksti = tiedosto.read()
 
         tuloste = LZWKoodaus_olio.luo_tuloste_pakatessa(teksti)
@@ -27,3 +28,5 @@ def LZW_pakkaa(LZWKoodaus_olio):
         optiedosto.write(bytes(tavut))
         print("Pakkaus valmis")
         return output_polku
+    
+LZW_pakkaa("/home/kasperka/testi.txt")
