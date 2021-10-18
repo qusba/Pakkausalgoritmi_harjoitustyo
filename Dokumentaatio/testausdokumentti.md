@@ -7,3 +7,13 @@ Näiden testien tarkoitus on yksinkertaisen syötteen avulla varmentaa kaikkien 
 
 Alla kuva haarautuvuuskattavuudesta:
 ![huffman_testikattavuus](https://user-images.githubusercontent.com/81024277/135897029-0069cef3-6b78-4023-9d2b-5b7ad4c4e3f9.png)
+
+
+## Lempel-Ziv-Welch
+
+Lempel-Ziv-Welchin yksikkötestaus on teoteutettu samaan tapaan kuin Huffmannin yksikkötestaus, eli samalla "AAAAAABCCCCCCDDEEEEE\n" -merkkijonolla. Yksikkötestaus kattaa jokaisen LZW_koodaus, LZW_pakkaus ja LZW_purku tiedostojen funktiot. 
+Testit voidaan ajaa terminaalissa komennolla "pytest Lempel-Ziv-Welch"- Testien haarautumakattavuuden voi tuottaa komennolla "poetry run invoke LZW-coverage-report".
+
+Alla kuva Haarautuvuuskattavuudesta:
+
+#lisää kuva, kun huffman testit taas toimivat.
