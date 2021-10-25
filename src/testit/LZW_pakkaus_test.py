@@ -1,7 +1,6 @@
 import unittest
 import os 
 from LZW_pakkaus import LZW_pakkaa
-from LZW_koodaus import LZWKoodaus
 
 class TestLZWPakkaus(unittest.TestCase):
     def setUp(self):

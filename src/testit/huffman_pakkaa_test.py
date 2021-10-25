@@ -1,6 +1,6 @@
 import unittest
-from huffman_koodaus import HuffmanKoodaus
-from huffman_pakkaus import huffman_pakkaa
+from huffmankoodaus import HuffmanKoodaus
+from huffmanpakkaus import huffman_pakkaa
 
 class TestHuffmanPakkaus(unittest.TestCase):
     def setUp(self):

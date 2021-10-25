@@ -1,3 +1,3 @@
 [run]
-source = Huffman,Lempel-Ziv-Welch
-omit = Huffman/__init__.py,Huffman/huffman_testit/**,Lempel-Ziv-Welch/__init__.py, Lempel-Ziv-Welch/LZW_testit/**
+source = Huffman,LZW
+omit = Huffman/__init__.py,Huffman/huffman_testit/**,LZW/__init__.py, LZW/LZW_testit/**

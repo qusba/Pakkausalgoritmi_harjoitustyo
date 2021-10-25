@@ -3,6 +3,6 @@ Huffman/__pycache__/
 /__pycache__
 /.coverage
 /htmlcov
-Huffman/huffman_testit/__pycache__/
-Lempel-Ziv-Welch/__pycache__/
-Lempel-Ziv-Welch/LZW_testit/__pycache__
+src/Huffman/__pycache__/
+src/LZW/__pycache__/
+src/testit/__pycache__/

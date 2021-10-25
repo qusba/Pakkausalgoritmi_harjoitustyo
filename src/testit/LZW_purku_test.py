@@ -1,7 +1,6 @@
 import os 
 import unittest
 from LZW_purku import LZW_purku
-from LZW_koodaus import LZWKoodaus
 from LZW_pakkaus import LZW_pakkaa
 
 class TestLZWPurku(unittest.TestCase):

@@ -94,7 +94,7 @@ class LZWKoodaus():
             bittikoodi += "0"
 
         bittikoodi = taytto_info + bittikoodi
-        
+
         return bittikoodi
 
     def muuta_bittikoodi_tavuiksi(self, bittikoodi):

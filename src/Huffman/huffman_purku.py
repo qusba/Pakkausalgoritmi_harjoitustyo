@@ -119,6 +119,4 @@ def kaanna_teksti_puun_avulla(bittiteksti, solmu, puun_tiedot_olio):
                 solmu = puun_tiedot_olio.puu
 
     return kaannettu_teksti
-
-pakattu = huffman_pakkaa("/home/kasperka/testi2.txt")
-purettu = huffman_purku(pakattu)
+    

@@ -28,4 +28,3 @@ def LZW_pakkaa(input_polku):
         optiedosto.write(bytes(tavut))
         print("Pakkaus valmis")
         return output_polku
-    

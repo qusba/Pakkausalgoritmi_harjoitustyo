@@ -1,5 +1,5 @@
 import unittest
-from huffman_koodaus import HuffmanKoodaus
+from huffmankoodaus import HuffmanKoodaus
 
 
 class TestHuffmanKoodaus(unittest.TestCase):

@@ -1,9 +1,7 @@
 import unittest
-from huffman_koodaus import HuffmanKoodaus
-from huffman_pakkaus import huffman_pakkaa
-from huffman_purku import huffman_purku
-from huffman_purku import luo_puu_uudelleen
-from huffman_purku import kaanna_teksti_puun_avulla
+from huffmankoodaus import HuffmanKoodaus
+from huffmanpakkaus import huffman_pakkaa
+from huffmanpurku import huffman_purku
 
 class TestHuffmanPurku(unittest.TestCase):
     def setUp(self):
