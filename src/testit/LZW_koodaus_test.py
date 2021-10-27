@@ -1,9 +1,8 @@
 import unittest
-from LZW_koodaus import LZWKoodaus
-
+import LZW
 class TestLZWKoodaus(unittest.TestCase):
     def setUp(self):
-        self.olio = LZWKoodaus()
+        self.olio = LZW.LZWKoodaus()
         self.teksti = "AAAAAABCCCCCCDDEEEEE\n"
         self.tuloste = self.olio.luo_tuloste_pakatessa(self.teksti)
         self.tuloste_bittimerkkijonona = self.olio.muuta_tuloste_biteiksi(self.tuloste)

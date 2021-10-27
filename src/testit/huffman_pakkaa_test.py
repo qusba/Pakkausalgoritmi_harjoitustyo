@@ -1,12 +1,11 @@
 import unittest
-from huffmankoodaus import HuffmanKoodaus
-from huffmanpakkaus import huffman_pakkaa
+import Huffman
 
 class TestHuffmanPakkaus(unittest.TestCase):
     def setUp(self):
-        self.olio = HuffmanKoodaus()
+        self.olio = Huffman.HuffmanKoodaus()
 
     def test_huffman_pakkaa_toimii(self):
-        pakattu = huffman_pakkaa("/home/kasperka/testi.txt")
+        pakattu = Huffman.huffman_pakkaa("/home/kasperka/testi.txt")
         self.assertEqual(pakattu,"/home/kasperka/testi_Huffman.bin")
         

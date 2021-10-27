@@ -1,13 +1,11 @@
 import unittest
-from huffmankoodaus import HuffmanKoodaus
-from huffmanpakkaus import huffman_pakkaa
-from huffmanpurku import huffman_purku
+import Huffman
 
 class TestHuffmanPurku(unittest.TestCase):
     def setUp(self):
-        self.olio = HuffmanKoodaus()
-        self.pakattu = huffman_pakkaa("/home/kasperka/testi.txt")
+        self.olio = Huffman.HuffmanKoodaus()
+        self.pakattu = Huffman.huffman_pakkaa("/home/kasperka/testi.txt")
 
     def test_huffman_purku_toimii(self):
-        purettu = huffman_purku(self.pakattu)
+        purettu = Huffman.huffman_purku(self.pakattu)
         self.assertEqual(purettu,"/home/kasperka/testi_Huffman_purettu.txt")

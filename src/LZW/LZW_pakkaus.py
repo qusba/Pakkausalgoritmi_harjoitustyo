@@ -1,5 +1,5 @@
 import os
-from LZW_koodaus import LZWKoodaus
+import LZW
 
 
 def LZW_pakkaa(input_polku):
@@ -14,7 +14,7 @@ def LZW_pakkaa(input_polku):
 
     tiedostonimi, tiedostotyyppi = os.path.splitext(input_polku)
     output_polku = tiedostonimi + "_LZW" ".bin"
-    LZWKoodaus_olio = LZWKoodaus()
+    LZWKoodaus_olio = LZW.LZWKoodaus()
     print(input_polku)
 
     with open(input_polku, "r") as tiedosto, open(output_polku, "wb") as optiedosto:

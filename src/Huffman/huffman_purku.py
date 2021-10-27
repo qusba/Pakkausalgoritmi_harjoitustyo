@@ -1,7 +1,5 @@
 import os
-from huffman_koodaus import HuffmanKoodaus  # pylint: disable W0611
-from huffman_pakkaus import huffman_pakkaa
-from huffman_solmu import HuffmanSolmu
+import Huffman
 
 
 class PuunTiedot:
@@ -31,7 +29,7 @@ def huffman_purku(binääritiedosto_polku):
     Palauttaa:
         output_polku: [Polku purettuun tiedostoon.]
     """
-    huffmankoodaus_olio = HuffmanKoodaus()
+    huffmankoodaus_olio = Huffman.HuffmanKoodaus()
     tiedostonimi, tiedostotyyppi = os.path.splitext(binääritiedosto_polku)
     output_polku = tiedostonimi + "_purettu" + ".txt"
 
@@ -79,7 +77,7 @@ def luo_puu_uudelleen(bitti, puun_tiedot_olio):
         merkki = chr(int(
             puun_tiedot_olio.puun_koodi[puun_tiedot_olio.indeksi+1:puun_tiedot_olio.indeksi+9], 2))
         puun_tiedot_olio.indeksi = puun_tiedot_olio.indeksi + 9
-        return HuffmanSolmu(merkki, 0)
+        return Huffman.HuffmanSolmu(merkki, 0)
 
     else:
         if puun_tiedot_olio.indeksi < len(puun_tiedot_olio.puun_koodi)-1:
@@ -88,7 +86,7 @@ def luo_puu_uudelleen(bitti, puun_tiedot_olio):
             puun_tiedot_olio.puun_koodi[puun_tiedot_olio.indeksi], puun_tiedot_olio)
         oikea_lapsi = luo_puu_uudelleen(
             puun_tiedot_olio.puun_koodi[puun_tiedot_olio.indeksi], puun_tiedot_olio)
-        return HuffmanSolmu(None, 0, vasen_lapsi, oikea_lapsi)
+        return Huffman.HuffmanSolmu(None, 0, vasen_lapsi, oikea_lapsi)
 
 
 def kaanna_teksti_puun_avulla(bittiteksti, solmu, puun_tiedot_olio):

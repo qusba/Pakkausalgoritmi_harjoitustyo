@@ -1,11 +1,11 @@
 import unittest
-from huffmankoodaus import HuffmanKoodaus
+import Huffman
 
 
 class TestHuffmanKoodaus(unittest.TestCase):
     def setUp(self):
         self.teksti = "AAAAAABCCCCCCDDEEEEE\n"
-        self.olio = HuffmanKoodaus()
+        self.olio = Huffman.HuffmanKoodaus()
         self.sanakirja = self.olio.luo_ilmaantuvuus_sanakirja(self.teksti)
         self.puu = self.olio.luo_puu(self.sanakirja)
         self.olio.tallenna_koodit(self.puu)

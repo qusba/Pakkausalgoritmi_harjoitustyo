@@ -1,6 +1,5 @@
 import os
-from LZW_koodaus import LZWKoodaus
-
+import LZW
 
 def LZW_purku(binääritiedosto_polku):
     """Funktio purkaa LZW-menetelmällä pakatun tiedoston kutsumalla LZWKoodaus -luokan funktioita.
@@ -14,7 +13,7 @@ def LZW_purku(binääritiedosto_polku):
 
     tiedostonimi, tiedostotyyppi = os.path.splitext(binääritiedosto_polku)
     output_polku = tiedostonimi + "_purettu" + ".txt"
-    LZWKoodaus_olio = LZWKoodaus()
+    LZWKoodaus_olio = LZW.LZWKoodaus()
 
     with open(binääritiedosto_polku, "rb") as tiedosto, open(output_polku, "w") as optiedosto:
 

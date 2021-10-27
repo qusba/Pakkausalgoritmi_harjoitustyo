@@ -1,5 +1,5 @@
 import os
-from huffman_koodaus import HuffmanKoodaus
+import Huffman
 
 
 def huffman_pakkaa(input_polku):
@@ -11,7 +11,7 @@ def huffman_pakkaa(input_polku):
     Palauttaa:
         output_polku: [Uuden pakatun tiedoston tiedostopolku.]
     """
-    huffmankoodaus_olio = HuffmanKoodaus()
+    huffmankoodaus_olio = Huffman.HuffmanKoodaus()
     tiedostonimi, tiedostotyyppi = os.path.splitext(input_polku)
     output_polku = tiedostonimi + "_Huffman"+".bin"
 

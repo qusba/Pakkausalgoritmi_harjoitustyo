@@ -1,5 +1,5 @@
 import math
-from huffman_solmu import HuffmanSolmu
+import Huffman
 
 
 class HuffmanKoodaus:
@@ -45,14 +45,14 @@ class HuffmanKoodaus:
 
         solmut = []
         for solmu in data.items():
-            solmut.append(HuffmanSolmu(solmu[0], solmu[1]))
+            solmut.append(Huffman.HuffmanSolmu(solmu[0], solmu[1]))
 
         while len(solmut) > 1:
             solmut = sorted(solmut, key=lambda solmu: solmu.ilmaantuvuus)
 
             vasen_solmu = solmut[0]
             oikea_solmu = solmut[1]
-            uusi_solmu = HuffmanSolmu(None,
+            uusi_solmu = Huffman.HuffmanSolmu(None,
                                       vasen_solmu.ilmaantuvuus+oikea_solmu.ilmaantuvuus, vasen_solmu, oikea_solmu)
 
             solmut.append(uusi_solmu)
