@@ -11,4 +11,5 @@ Tiralabran harjoitustyö syksy 2021
 [viikkoraportti 3](https://github.com/qusba/Pakkausalgoritmi_harjoitustyo/blob/main/Dokumentaatio/viikkoraportti3.md)<br/>
 [viikkoraportti 4](https://github.com/qusba/Pakkausalgoritmi_harjoitustyo/blob/main/Dokumentaatio/viikkoraportti4.md)<br/>
 [viikkoraportti 5](https://github.com/qusba/Pakkausalgoritmi_harjoitustyo/blob/main/Dokumentaatio/viikkoraportti5.md)<br/>
+[viikkoraportti 6](https://github.com/qusba/Pakkausalgoritmi_harjoitustyo/blob/main/Dokumentaatio/viikkoraportti6.md)
 
