@@ -19,7 +19,7 @@ Alla kuva haarautumakattavuudesta:
 
 ## Suorituskykytestaus
 
-Molempien algoritmien pakkaustehoa testattiin seitemällä eri tekstitiedostolla, joiden koot olivat noin 0.00002mb, 0.1mb, 0.2mb, 0,4mb, 0,6mb, 1mb, 2mb.
+Molempien algoritmien pakkaustehoa testattiin seitsemällä eri tekstitiedostolla, joiden koot olivat noin 0.00002mb, 0.1mb, 0.2mb, 0,4mb, 0,6mb, 1mb, 2mb.
 Tiedostoista kaikki paitsi ensimmäinen sisälsivät tietokoneen tuottamaa lorem ipsumia.
 
 Alla graafinen esitys algoritmien suorituskyvystä:
@@ -29,9 +29,11 @@ Alla graafinen esitys algoritmien suorituskyvystä:
 
 Testauksen perusteella vaikuttaisi siltä, ettei Huffman algoritmini suorituskyky pääse 47% korkeammalle. Huffmannin teho on parhaimmillaan silloin kun joitain yksittäisiä merkkejä esiintyy huomattavasti enemmän kuin toisia. Tietokoneen tuottamassa lorem ipsumissa tulokset näyttäisivät olevan hyvin tasaisia.
 
-LZW algoritmin suorituskyky näytti lorem ipsumin kanssa kasvavan tiedostokoon kasvaessa. Paras tulos saatiin 2mb kokoisella tiedostolla, jolloin pakkausteho oli jopa 90%. LZW algoritmi toimii parhaiten silloin kun tiedostossa on paljon toistoa. Vaikka käytetty lorem ipsum teksti oli tietokoneella "satunnaisesti" luotua, sisältää se varmasti paljon toistoa, varsinkin isompia tiedostoja luodessa.
+LZW algoritmin suorituskyky näytti lorem ipsumin kanssa kasvavan tiedostokoon kasvaessa. Paras tulos saatiin 2mb kokoisella tiedostolla, jolloin pakkausteho oli jopa 90%. LZW algoritmi toimii parhaiten silloin kun tiedostossa on paljon toistoa. Vaikka käytetty lorem ipsum teksti oli tietokoneella "satunnaisesti" luotua, sisältää se varmasti paljon toistoa varsinkin isompia tiedostoja luodessa.
 
 Molemmat algoritmit toimivat todella heikosti pienimmän tiedoston kanssa, jolloin pakkaustehot olivat vain 14% Huffmannilla ja 19% Lempel-Ziv-Welchillä. Algoritmeja ei ole suunniteltu pienille tiedostoille, eikä toisaalta pieneten tiedostojen pakkaaminen ole kovin mielekästä.
+
+Molemmilla algortimeilla saavutettu suorituskyky vastasi määrittelydokumentissa toivottua 40-60% tasoa. Lorem ipsumin tapauksessa LZW-algoritmi jopa ylitti sen kirkkaasti.
 
 
 
