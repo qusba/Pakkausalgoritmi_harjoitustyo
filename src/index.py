@@ -10,7 +10,7 @@ while True:
 
     if valinta1 == 1:
         print()
-        print("Halautko käyttää Huffman vai LZW -menetelmää?")
+        print("Haluatko käyttää Huffman vai LZW -menetelmää?")
         print("Huffman = 1, LZW = 2")
         valinta2 = int(input("Syötä valinta: "))
         if valinta2 == 1:
@@ -35,7 +35,7 @@ while True:
     
     elif valinta1 == 2:
         print()
-        print("Halautko käyttää Huffman vai LZW -menetelmää?")
+        print("Haluatko käyttää Huffman vai LZW -menetelmää?")
         print("Huffman = 1, LZW = 2")
         valinta2 = int(input("Syötä valinta: "))
         
