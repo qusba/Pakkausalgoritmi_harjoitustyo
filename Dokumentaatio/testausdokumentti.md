@@ -17,4 +17,16 @@ Alla kuva haarautumakattavuudesta:
 
 ![yhteinen_haarautumakattavuus](https://user-images.githubusercontent.com/81024277/139065406-8d9fe947-b11d-4dd6-8d57-f5b598da934c.png)
 
+## Suorituskykytestaus
+
+Molempien algoritmien pakkaustehoa testattiin seitemällä eri tekstitiedostolla, joiden koot olivat noin 0.00002mb, 0.1mb, 0.2mb, 0,4mb, 0,6mb, 1mb, 2mb.
+Tiedostoista kaikki paitsi ensimmäinen sisälsivät tietokoneen tuottamaa lorem ipsumia.
+
+Alla graafinen esitys algoritmien suorituskyvystä:
+
+
+![Figure_1](https://user-images.githubusercontent.com/81024277/139428709-f89afec1-3028-4a18-9aec-15d24ffb8c64.png)
+
+
+
 
