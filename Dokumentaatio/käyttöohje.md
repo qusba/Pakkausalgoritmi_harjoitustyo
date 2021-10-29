@@ -2,8 +2,8 @@
 
 ## Komennot:
 
-Ohjelman voi käynnistää projektin päärepositoriossa komennolla: "poetry run invoke start"
-Ohjelman testit voidaan ajaa komennolla: "poetry run invoke testaa"
+Ohjelman voi käynnistää projektin päärepositoriossa komennolla: "poetry run invoke start"<br/>
+Ohjelman testit voidaan ajaa komennolla: "poetry run invoke testaa"<br/>
 Testien haarautumakattavuuden voi tuottaa komennolla "poetry run invoke coverage-report"
 
 ## Ohjelma käynnistämisen jälkeen:
