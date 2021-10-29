@@ -31,7 +31,7 @@ Testauksen perusteella vaikuttaisi siltä, ettei Huffman algoritmini suorituskyk
 
 LZW algoritmin suorituskyky näytti lorem ipsumin kanssa kasvavan tiedostokoon kasvaessa. Paras tulos saatiin 2mb kokoisella tiedostolla, jolloin pakkausteho oli jopa 90%. LZW algoritmi toimii parhaiten silloin kun tiedostossa on paljon toistoa. Vaikka käytetty lorem ipsum teksti oli tietokoneella "satunnaisesti" luotua, sisältää se varmasti paljon toistoa varsinkin isompia tiedostoja luodessa.
 
-Molemmat algoritmit toimivat todella heikosti pienimmän tiedoston kanssa, jolloin pakkaustehot olivat vain 14% Huffmannilla ja 19% Lempel-Ziv-Welchillä. Algoritmeja ei ole suunniteltu pienille tiedostoille, eikä toisaalta pieneten tiedostojen pakkaaminen ole kovin mielekästä.
+Molemmat algoritmit toimivat todella heikosti pienimmän tiedoston kanssa, jolloin pakkaustehot olivat vain 14% Huffmannilla ja 19% Lempel-Ziv-Welchillä. Algoritmeja ei ole suunniteltu pienille tiedostoille, eikä toisaalta pieneten tiedostojen pakkaaminen ole kovin mielekästä. Huffmannissa heikko suorituskyky johtuu siitä, että pakatessa luotu puurakenne on tallennettava bittitiedostoon mukaan. LZW toimii heikosti, sillä pienessä tiedostossa on kovin vähän toistoa.
 
 Molemmilla algortimeilla saavutettu suorituskyky vastasi määrittelydokumentissa toivottua 40-60% tasoa. Lorem ipsumin tapauksessa LZW-algoritmi jopa ylitti sen kirkkaasti.
 
