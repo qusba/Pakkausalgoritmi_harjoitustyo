@@ -58,7 +58,7 @@ Jos valitset "1","enter", terminaaliin ilmestyy:
 _"Syötä _Huffman.bin loppuinen tiedostopolku:"_
 
 
-Jos valitset "1","enter", terminaaliin ilmestyy:
+Jos valitset "2","enter", terminaaliin ilmestyy:
 
 _"Syötä _LZW.bin loppuinen tiedostopolku:"_
 
